@@ -1,11 +1,9 @@
 #grid{
-  border: 1px solid black;
   border-collapse: collapse;
 }
 
 td, tr{
   height: 20px;
   width: 20px;
-  border: 1px solid black;
-  border-collapse: collapse;
+  border: 1px solid #E6E6E6;
 }
