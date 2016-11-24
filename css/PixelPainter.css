@@ -7,6 +7,7 @@ body{
 #pp-canvas{
   width: 329px;
   height: 588px;
+  border: 1px solid black;
   border-collapse: collapse;
   position: fixed;
   left: 411px;

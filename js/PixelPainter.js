@@ -7,7 +7,8 @@ function pixelPainterModule(width,height){
   ppCanvas.id = 'pp-canvas';
   pixelPainter.appendChild(ppCanvas);
 
-  for (let i = 0; i < height; i++)                                                                                  {
+
+  for (let i = 0; i < height; i++) {
     var canvasRows = document.createElement('tr');
     ppCanvas.appendChild(canvasRows);
     for (let j = 0; j < width; j++) {
@@ -48,8 +49,6 @@ function pixelPainterModule(width,height){
 
   //erase button
   var eraseButton = document.createElement('button');
-    eraseButton.className = 'pp-button';
-    eraseButton.id = 'erase';
     pixelPainter.appendChild(eraseButton);
     eraseButton.addEventListener('click', function(){
     currentColor = 'initial';
@@ -96,4 +95,3 @@ function pixelPainterModule(width,height){
 
 // canvas resolution
 pixelPainterModule(100,150);
-
