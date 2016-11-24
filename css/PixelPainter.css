@@ -1,7 +1,7 @@
 body{
   position: fixed;
   background-image: url(/imgs/background.jpg);
-  background-repeat: no-repeat; 
+  background-repeat: no-repeat;
 }
 
 #pp-canvas{
@@ -149,35 +149,36 @@ body{
   left: 231px;
 }
 
-#clear{
+.pp-button{
   height: 60px;
   width: 60px;
   background-color: transparent;
   border: none;
   outline: none;
   position: fixed;
+}
+
+#draw{
+  left: 100px;
+  top: 45px;
+}
+
+#rectangle{
+  left: 40px;
+  top: 45px;
+}
+
+#clear{
   left: 40px;
   top: 160px;
 }
 
 #erase{
-  height: 60px;
-  width: 60px;
-  background-color: transparent;
-  border: none;
-  outline: none;
-  position: fixed;
   left: 100px;
   top: 160px;
 }
 
 #fill{
-  height: 60px;
-  width: 60px;
-  background-color: transparent;
-  border: none;
-  outline: none;
-  position: fixed;
   left: 40px;
   top: 100px;
 }
