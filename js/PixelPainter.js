@@ -138,8 +138,6 @@ function pixelPainterModule(width,height){
   function startRect(){
     startX = this.dataX;
     startY = this.dataY;
-    // console.log(this.dataX);
-    // console.log(this.dataY);
   }
 
   function endRect(){
@@ -147,37 +145,32 @@ function pixelPainterModule(width,height){
     endY = this.dataY;
 
     for (let i = 0; i < cellList.length; i++) {
-
-      if (startX < endX){
-        for (let j = startX; j <= endX; j++) {
-          if (cellList[i].dataX >= startX && cellList[i].dataX <= endX){
-            if (cellList[i].dataY === startY || cellList[i].dataY === endY){
-            cellList[i].style.backgroundColor = currentColor;
+      if (cellList[i].dataY === startY || cellList[i].dataY === endY){
+        if (startX < endX){
+          for (let j = startX; j <= endX; j++) {
+            if (cellList[i].dataX >= startX && cellList[i].dataX <= endX){
+              cellList[i].style.backgroundColor = currentColor;
             }
           }
-        }
-      }else{
-        for (let j = startX; j >= endX; j--) {
-          if (cellList[i].dataX <= startX && cellList[i].dataX >= endX){
-            if (cellList[i].dataY === startY || cellList[i].dataY === endY){
-            cellList[i].style.backgroundColor = currentColor;
+        }else{
+          for (let j = startX; j >= endX; j--) {
+            if (cellList[i].dataX <= startX && cellList[i].dataX >= endX){
+              cellList[i].style.backgroundColor = currentColor;
             }
           }
         }
       }
 
-      if (startY < endY){
-        for (let k = startY; k <= endY; k++) {
-          if (cellList[i].dataY >= startY && cellList[i].dataY <= endY){
-            if (cellList[i].dataX === startX || cellList[i].dataX === endX){
+      if (cellList[i].dataX === startX || cellList[i].dataX === endX){
+        if (startY < endY){
+          for (let k = startY; k <= endY; k++) {
+            if (cellList[i].dataY >= startY && cellList[i].dataY <= endY){
               cellList[i].style.backgroundColor = currentColor;
             }
           }
-        }
-      }else{
-        for (let k = startY; k >= endY; k--) {
-          if (cellList[i].dataY <= startY && cellList[i].dataY >= endY){
-            if (cellList[i].dataX === startX || cellList[i].dataX === endX){
+        }else{
+          for (let k = startY; k >= endY; k--) {
+            if (cellList[i].dataY <= startY && cellList[i].dataY >= endY){
               cellList[i].style.backgroundColor = currentColor;
             }
           }
