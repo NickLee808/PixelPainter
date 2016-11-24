@@ -1,9 +1,182 @@
-#grid{
-  border-collapse: collapse;
+body{
+  position: fixed;
+  background-image: url(/imgs/background.jpg);
+  background-repeat: no-repeat; 
 }
 
-td, tr{
+#pp-canvas{
+  width: 329px;
+  height: 588px;
+  border-collapse: collapse;
+  position: fixed;
+  left: 411px;
+  top: 78px;
+  cursor: crosshair;
+}
+
+.pp-palette{
   height: 20px;
   width: 20px;
-  border: 1px solid #E6E6E6;
+  border-radius: 100%;
+  position: fixed;
+}
+
+[id='000000']{
+  top: 661px;
+  left: 211px;
+  height: 30px;
+  width: 30px;
+}
+
+[id='FF0000']{
+  top: 599px;
+  left: 334px;
+}
+
+[id='FF2900']{
+  top: 599px;
+  left: 358px;
+}
+
+[id='FF5200']{
+  top: 610px;
+  left: 377px;
+}
+
+[id='FF7C00']{
+  top: 625px;
+  left: 359px;
+}
+
+[id='FFA500']{
+  top: 638px;
+  left: 340px;
+}
+
+[id='FFBC00']{
+  top: 654px;
+  left: 320px;
+}
+
+[id='FFD200']{
+  top: 666px;
+  left: 298px;
+}
+
+[id='FFE800']{
+  top: 676px;
+  left: 278px;
+}
+
+[id='FFFF00']{
+  top: 685px;
+  left: 254px;
+}
+
+[id='C0E000']{
+  top: 698px;
+  left: 226px;
+}
+
+[id='80C000']{
+  top: 709px;
+  left: 199px;
+}
+
+[id='40A000']{
+  top: 716px;
+  left: 178px;
+}
+
+[id='008000']{
+  top: 725px;
+  left: 154px;
+}
+
+[id='408040']{
+  top: 727px;
+  left: 131px;
+}
+
+[id='004080']{
+  top: 729px;
+  left: 110px;
+}
+
+[id='0020C0']{
+  top: 730px;
+  left: 88px;
+}
+
+[id='0000FF']{
+  top: 707px;
+  left: 90px;
+}
+
+[id='2000E0']{
+  top: 690px;
+  left: 106px;
+}
+
+[id='4000C0']{
+  top: 675px;
+  left: 125px;
+}
+
+[id='6000A0']{
+  top: 663px;
+  left: 146px;
+}
+
+[id='800080']{
+  top: 652px;
+  left: 166px;
+}
+
+[id='A00060']{
+  top: 643px;
+  left: 187px;
+}
+
+[id='C00040']{
+  top: 631px;
+  left: 209px;
+}
+
+[id='E00020']{
+  top: 625px;
+  left: 231px;
+}
+
+#clear{
+  height: 60px;
+  width: 60px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  position: fixed;
+  left: 40px;
+  top: 160px;
+}
+
+#erase{
+  height: 60px;
+  width: 60px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  position: fixed;
+  left: 100px;
+  top: 160px;
+}
+
+#fill{
+  height: 60px;
+  width: 60px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  position: fixed;
+  left: 40px;
+  top: 100px;
 }
