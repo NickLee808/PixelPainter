@@ -8,21 +8,15 @@ function pixelPainterModule(width,height){
   pixelPainter.appendChild(ppCanvas);
 
 
-  for (let i = 0; i < height; i++) {
+  for (var y = 0; y < height; y++) {
     var canvasRows = document.createElement('tr');
     ppCanvas.appendChild(canvasRows);
-    for (let j = 0; j < width; j++) {
+    for (var x = 0; x < width; x++) {
       var canvasCells = document.createElement('td');
+      canvasCells.dataX = x;
+      canvasCells.dataY = y;
       canvasRows.appendChild(canvasCells);
     }
-  }
-
-  var cellList = ppCanvas.getElementsByTagName('td');
-
-  for (i = 0; i < cellList.length; i++) {
-    cellList[i].addEventListener('mousedown', startDraw);
-    cellList[i].addEventListener('mouseenter', moreDraw);
-    cellList[i].addEventListener('mouseup', endDraw);
   }
 
   //color palette
@@ -40,6 +34,20 @@ function pixelPainterModule(width,height){
     });
   }
 
+  //draw button
+  var drawButton = document.createElement('button');
+    drawButton.className = 'pp-button';
+    drawButton.id = 'draw';
+    pixelPainter.appendChild(drawButton);
+    drawButton.addEventListener('click', drawTool);
+
+  //rectangle button
+  var rectButton = document.createElement('button');
+    rectButton.className = 'pp-button';
+    rectButton.id = 'rectangle';
+    pixelPainter.appendChild(rectButton);
+    rectButton.addEventListener('click', rectTool);
+
   //clear button
   var clearButton = document.createElement('button');
     clearButton.className = 'pp-button';
@@ -49,10 +57,13 @@ function pixelPainterModule(width,height){
 
   //erase button
   var eraseButton = document.createElement('button');
+    eraseButton.id = 'erase';
+    eraseButton.className = 'pp-button';
     pixelPainter.appendChild(eraseButton);
     eraseButton.addEventListener('click', function(){
-    currentColor = 'initial';
-  });
+      drawTool();
+      currentColor = 'initial';
+    });
 
   //fill button
   var fillButton = document.createElement('button');
@@ -60,13 +71,41 @@ function pixelPainterModule(width,height){
     fillButton.id = 'fill';
     pixelPainter.appendChild(fillButton);
 
-  //functions
-  var paint;
-
   var clearAudio = document.createElement('audio');
     clearAudio.id = 'clearAudio';
     clearAudio.src = '/imgs/We%20dont%20make%20mistakes%20here....mp3';
     pixelPainter.appendChild(clearAudio);
+
+  //functions
+  var cellList = ppCanvas.getElementsByTagName('td');
+  var paint;
+
+  function drawTool(){
+    clearListeners();
+    for (let i = 0; i < cellList.length; i++) {
+      cellList[i].addEventListener('mousedown', startDraw);
+      cellList[i].addEventListener('mouseenter', moreDraw);
+      cellList[i].addEventListener('mouseup', endDraw);
+    }
+  }
+
+  function rectTool(){
+    clearListeners();
+    for (let i = 0; i < cellList.length; i++) {
+      cellList[i].addEventListener('mousedown', startRect);
+      cellList[i].addEventListener('mouseup', endRect);
+    }
+  }
+
+  function clearListeners(){
+    for (let i = 0; i < cellList.length; i++) {
+      cellList[i].removeEventListener('mousedown', startDraw);
+      cellList[i].removeEventListener('mouseenter', moreDraw);
+      cellList[i].removeEventListener('mouseup', endDraw);
+      cellList[i].removeEventListener('mousedown', startRect);
+      cellList[i].removeEventListener('mouseup', endRect);
+    }
+  }
 
   function startDraw(){
     paint = true;
@@ -86,8 +125,57 @@ function pixelPainterModule(width,height){
   function clearCanvas(){
     var audio = document.getElementById("clearAudio");
       audio.play();
-    for (i = 0; i < cellList.length; i++) {
+    for (let i = 0; i < cellList.length; i++) {
       cellList[i].style.backgroundColor = 'initial';
+    }
+  }
+
+  var startX;
+  var startY;
+  var endX;
+  var endY;
+
+  function startRect(){
+    startX = this.dataX;
+    startY = this.dataY;
+  }
+
+  function endRect(){
+    endX = this.dataX;
+    endY = this.dataY;
+
+    for (let i = 0; i < cellList.length; i++) {
+      if (cellList[i].dataY === startY || cellList[i].dataY === endY){
+        if (startX < endX){
+          for (let j = startX; j <= endX; j++) {
+            if (cellList[i].dataX >= startX && cellList[i].dataX <= endX){
+              cellList[i].style.backgroundColor = currentColor;
+            }
+          }
+        }else{
+          for (let j = startX; j >= endX; j--) {
+            if (cellList[i].dataX <= startX && cellList[i].dataX >= endX){
+              cellList[i].style.backgroundColor = currentColor;
+            }
+          }
+        }
+      }
+
+      if (cellList[i].dataX === startX || cellList[i].dataX === endX){
+        if (startY < endY){
+          for (let k = startY; k <= endY; k++) {
+            if (cellList[i].dataY >= startY && cellList[i].dataY <= endY){
+              cellList[i].style.backgroundColor = currentColor;
+            }
+          }
+        }else{
+          for (let k = startY; k >= endY; k--) {
+            if (cellList[i].dataY <= startY && cellList[i].dataY >= endY){
+              cellList[i].style.backgroundColor = currentColor;
+            }
+          }
+        }
+      }
     }
   }
 
