@@ -182,3 +182,45 @@ body{
   left: 40px;
   top: 100px;
 }
+
+
+#save{
+  left: 100px;
+  top: 100px;
+}
+
+/*#load{
+  left: 40px;
+  top: 100px;
+}*/
+
+#left{
+  width: 405px;
+  height: 750px;
+  float: left;
+}
+
+#right{
+  width: 60px;
+  height: 750px;
+  position: fixed;
+  float: left;
+  left: 740px;
+}
+
+#top{
+  width: 350px;
+  height: 70px;
+  position: fixed;
+  float: left;
+  left: 400px;
+}
+
+#bottom{
+  width: 350px;
+  height: 70px;
+  position: fixed;
+  float: left;
+  left: 400px;
+  top: 664px;
+}
