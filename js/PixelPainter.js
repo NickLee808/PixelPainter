@@ -125,7 +125,7 @@ function pixelPainterModule(width,height){
 
   //functions
   var cellList = ppCanvas.getElementsByTagName('td');
-  var paint;
+  var drawing;
   var erasing;
 
   function drawTool(){
@@ -182,18 +182,18 @@ function pixelPainterModule(width,height){
   }
 
   function startDraw(){
-    paint = true;
+    drawing = true;
     this.style.backgroundColor = currentColor;
   }
 
   function moreDraw(){
-    if (paint === true){
+    if (drawing === true){
       this.style.backgroundColor = currentColor;
     }
   }
 
   function endDraw(){
-    paint = false;
+    drawing = false;
   }
 
   function clearCanvas(){
