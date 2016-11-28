@@ -48,6 +48,7 @@ function pixelPainterModule(width,height){
 
   //color palette
   var currentColor = '000000';
+  var previousColor;
   var colorArray = ['000000', 'FF0000', 'FF2900', 'FF5200', 'FF7C00', 'FFA500', 'FFBC00', 'FFD200', 'FFE800', 'FFFF00', 'C0E000', '80C000', '40A000', '008000', '408040', '004080', '0020C0', '0000FF', '2000E0', '4000C0', '6000A0', '800080', 'A00060', 'C00040', 'E00020'];
 
   var colorDisplay = document.createElement('canvas');
@@ -61,10 +62,7 @@ function pixelPainterModule(width,height){
     paletteButton.className = 'pp-palette';
     paletteButton.style.backgroundColor = colorArray[i];
     pixelPainter.appendChild(paletteButton);
-    paletteButton.addEventListener('click', function(){
-      currentColor = this.id;
-      colorDisplay.style.backgroundColor = currentColor;
-    });
+    paletteButton.addEventListener('click', selectColor)
   }
 
   //draw button
@@ -93,11 +91,7 @@ function pixelPainterModule(width,height){
     eraseButton.id = 'erase';
     eraseButton.className = 'pp-button';
     pixelPainter.appendChild(eraseButton);
-    eraseButton.addEventListener('click', function(){
-      drawTool();
-      currentColor = 'initial';
-      colorDisplay.style.backgroundColor = 'white';
-    });
+    eraseButton.addEventListener('click', eraseTool);
 
   // save button
   var saveButton = document.createElement('button');
@@ -132,9 +126,10 @@ function pixelPainterModule(width,height){
   //functions
   var cellList = ppCanvas.getElementsByTagName('td');
   var paint;
+  var erasing;
 
   function drawTool(){
-    clearListeners();
+    initializeTool();
     for (let i = 0; i < cellList.length; i++) {
       cellList[i].addEventListener('mousedown', startDraw);
       cellList[i].addEventListener('mouseover', moreDraw);
@@ -143,12 +138,36 @@ function pixelPainterModule(width,height){
   }
 
   function rectTool(){
-    clearListeners();
+    initializeTool();
     var audio = document.getElementById("rectAudio");
     audio.play();
     for (let i = 0; i < cellList.length; i++) {
       cellList[i].addEventListener('mousedown', startRect);
       cellList[i].addEventListener('mouseup', endRect);
+    }
+  }
+
+  function eraseTool(){
+    drawTool();
+    erasing = true;
+    previousColor = currentColor;
+    currentColor = 'initial';
+    colorDisplay.style.backgroundColor = 'white';
+  }
+
+  function initializeTool(){
+    clearListeners();
+    erasing = false;
+    if (currentColor === 'initial'){
+      currentColor = previousColor;
+      colorDisplay.style.backgroundColor = currentColor;
+    }
+  }
+
+  function selectColor(){
+    if (erasing === false){
+      currentColor = this.id;
+      colorDisplay.style.backgroundColor = currentColor;
     }
   }
 
@@ -259,6 +278,9 @@ function pixelPainterModule(width,height){
       }
     }
   }
+
+  //initialize with draw tool active
+  drawTool();
 
 }
 
