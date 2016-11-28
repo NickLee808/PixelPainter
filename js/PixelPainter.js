@@ -106,11 +106,11 @@ function pixelPainterModule(width,height){
     pixelPainter.appendChild(loadButton);
     loadButton.addEventListener('click',loadCanvas);
 
-  //fill button
-  // var fillButton = document.createElement('button');
-  //   fillButton.className = 'pp-button';
-  //   fillButton.id = 'fill';
-  //   pixelPainter.appendChild(fillButton);
+  // fill button
+  var fillButton = document.createElement('button');
+    fillButton.className = 'pp-button';
+    fillButton.id = 'fill';
+    pixelPainter.appendChild(fillButton);
 
   var clearAudio = document.createElement('audio');
     clearAudio.id = 'clearAudio';
