@@ -130,7 +130,7 @@ function pixelPainterModule(width,height){
     clearListeners();
     for (let i = 0; i < cellList.length; i++) {
       cellList[i].addEventListener('mousedown', startDraw);
-      cellList[i].addEventListener('mouseenter', moreDraw);
+      cellList[i].addEventListener('mouseover', moreDraw);
       cellList[i].addEventListener('mouseup', endDraw);
     }
   }
@@ -148,7 +148,7 @@ function pixelPainterModule(width,height){
   function clearListeners(){
     for (let i = 0; i < cellList.length; i++) {
       cellList[i].removeEventListener('mousedown', startDraw);
-      cellList[i].removeEventListener('mouseenter', moreDraw);
+      cellList[i].removeEventListener('mouseover', moreDraw);
       cellList[i].removeEventListener('mouseup', endDraw);
       cellList[i].removeEventListener('mousedown', startRect);
       cellList[i].removeEventListener('mouseup', endRect);
@@ -202,6 +202,7 @@ function pixelPainterModule(width,height){
   }
 
   function loadCanvas(){
+    clearCanvas();
     for (let i = 0; i < cellList.length; i++) {
       for (let x = 0; x < cellDataXArray.length; x++) {
         if (cellList[i].dataX === cellDataXArray[x] && cellList[i].dataY === cellDataYArray[x]){
