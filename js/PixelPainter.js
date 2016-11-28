@@ -47,8 +47,13 @@ function pixelPainterModule(width,height){
 
 
   //color palette
-  var currentColor;
+  var currentColor = '000000';
   var colorArray = ['000000', 'FF0000', 'FF2900', 'FF5200', 'FF7C00', 'FFA500', 'FFBC00', 'FFD200', 'FFE800', 'FFFF00', 'C0E000', '80C000', '40A000', '008000', '408040', '004080', '0020C0', '0000FF', '2000E0', '4000C0', '6000A0', '800080', 'A00060', 'C00040', 'E00020'];
+
+  var colorDisplay = document.createElement('canvas');
+  colorDisplay.id = 'color-display';
+  pixelPainter.appendChild(colorDisplay);
+  colorDisplay.style.backgroundColor = currentColor;
 
   for (let i = 0; i < colorArray.length; i++) {
     var paletteButton = document.createElement('canvas');
@@ -58,6 +63,7 @@ function pixelPainterModule(width,height){
     pixelPainter.appendChild(paletteButton);
     paletteButton.addEventListener('click', function(){
       currentColor = this.id;
+      colorDisplay.style.backgroundColor = currentColor;
     });
   }
 
@@ -90,6 +96,7 @@ function pixelPainterModule(width,height){
     eraseButton.addEventListener('click', function(){
       drawTool();
       currentColor = 'initial';
+      colorDisplay.style.backgroundColor = 'white';
     });
 
   // save button
